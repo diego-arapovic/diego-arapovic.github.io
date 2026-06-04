@@ -18,6 +18,8 @@ export interface Project {
   source?: string;
   /** Featured projects render as a large hero card; others as a grid. */
   featured?: boolean;
+  /** Optional preview image for featured cards (path in /public, e.g. '/thesis.png'). */
+  image?: string;
 }
 
 export interface SiteConfig {
@@ -56,33 +58,35 @@ export interface SiteConfig {
 export const site: SiteConfig = {
   // ── Identity ──────────────────────────────────────────────────────────
   name: 'Diego Arapović',
-  role: 'Software Developer', // TODO: your real title
+  role: 'MSc Computer Science @ ETH Zürich',
 
-  tagline: 'I build clean, thoughtful software for the web.', // TODO
+  tagline: 'I build machine-learning systems — and dig into the math that makes them work.',
 
   // ── About (one string per paragraph) ──────────────────────────────────
   bio: [
-    // TODO: replace with your own story.
-    "Hi, I'm Diego — a developer who enjoys turning fuzzy ideas into polished, dependable products. I care about the details: fast load times, clear interfaces, and code that's a pleasure to maintain.",
-    "When I'm not shipping, you'll find me exploring new tools, contributing to side projects, and learning whatever's just outside my comfort zone.",
+    "I'm a Computer Science Master's student at ETH Zürich, focused on machine learning. My work runs across software engineering, model training, simulations, and computer vision — with a particular pull toward reinforcement learning, deep learning, and the mathematical foundations that make them tick.",
+    "Right now I'm writing my Master's thesis on long-sequence modeling for autonomous drone racing at UZH's Robotics and Perception Group. Earlier work spans reproducible ML pipelines, shielded reinforcement-learning agents for autonomous driving, and software shipped to thousands of users — across a product-engineering role at Scandit and a software-engineering internship at Ergon Informatik. Based in Zürich.",
   ],
 
   // ── Skills (shown as tags) ────────────────────────────────────────────
   skills: [
-    // TODO: your actual stack
-    'TypeScript',
-    'JavaScript',
-    'React',
-    'Node.js',
     'Python',
-    'HTML & CSS',
+    'C++',
+    'PyTorch',
+    'JAX',
+    'scikit-learn',
+    'Java',
+    'Haskell',
     'Git',
+    'Linux',
+    'Bash',
+    'CI/CD',
   ],
 
   // ── Links (leave a field out or empty to hide it) ─────────────────────
   socials: {
-    github: 'https://github.com/your-username', // TODO
-    linkedin: 'https://www.linkedin.com/in/your-handle', // TODO
+    github: 'https://github.com/diego-arapovic',
+    linkedin: 'https://www.linkedin.com/in/diegoarapovic',
     // twitter: 'https://x.com/your-handle',
     emailEncoded: 'ZGllZ28uYXJhcG92aWNAZ21haWwuY29t', // base64 — never store the plain address
   },
@@ -90,20 +94,40 @@ export const site: SiteConfig = {
   // ── Projects ──────────────────────────────────────────────────────────
   projects: [
     {
-      // TODO: your real project
-      name: 'My Project',
+      name: 'Long-Sequence Modeling for Drone Racing',
       description:
-        'A short, compelling description of what you built, the problem it solves, and what makes it special. Aim for one or two punchy sentences.',
-      tech: ['TypeScript', 'React', 'Tailwind CSS'],
-      link: 'https://example.com', // live demo (optional)
-      source: 'https://github.com/your-username/your-project', // repo (optional)
+        "My Master's thesis at UZH's Robotics and Perception Group (RPG), exploring long-sequence models for autonomous drone racing.",
+      tech: ['Sequence Modeling', 'Deep Learning', 'Robotics', 'Python'],
       featured: true,
     },
-    // Add more projects here — non-featured ones appear in a grid below.
+    {
+      name: 'Safe Reinforcement Learning for Autonomous Driving',
+      description:
+        "Semester thesis at KU Leuven's DTAI lab: researched and tested RL agents for autonomous driving, demonstrating the advantages of shielded PPO, and parallelized training and evaluation across GPUs to cut experiment time.",
+      tech: ['Reinforcement Learning', 'Shielded PPO', 'Autonomous Driving'],
+    },
+    {
+      name: 'Vision Transformer Explainability',
+      description:
+        'An interactive blog and demo introducing a novel adaptation of activation maximization for the attention scores of ViT attention heads — peer-reviewed and presented at an academic conference.',
+      tech: ['Vision Transformers', 'Explainability', 'Deep Learning'],
+    },
+    {
+      name: 'RACER — Road Analysis through Clustering & Enhanced Reconstruction',
+      description:
+        'An ensemble-learning workflow with pre-training and fine-tuning over large, cleaned image datasets, plus end-to-end scripts for reproducible data prep, training, and evaluation.',
+      tech: ['Ensemble Learning', 'Computer Vision', 'Python'],
+    },
+    {
+      name: 'Datathon — RAG from Scratch',
+      description:
+        'Built a retrieval-augmented generation system from scratch during a two-day data-science hackathon, placing 4th at the ETH Analytics Club Datathon.',
+      tech: ['RAG', 'LLMs', 'Python'],
+    },
   ],
 
   // ── SEO ───────────────────────────────────────────────────────────────
-  siteTitle: 'Diego Arapović — Software Developer',
+  siteTitle: 'Diego Arapović — Machine Learning & Computer Science',
   siteDescription:
-    'Personal site and project portfolio of Diego Arapović, a software developer.',
+    "Personal site of Diego Arapović — a Computer Science Master's student at ETH Zürich working on machine learning, reinforcement learning, and computer vision.",
 };

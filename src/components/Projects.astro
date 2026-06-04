@@ -75,10 +75,20 @@ const rest = site.projects.filter((p) => !p.featured);
               </div>
             </div>
 
-            {/* Preview placeholder — drop a screenshot in /public and use an <img> here. */}
-            <div class="flex aspect-video items-center justify-center rounded-xl border border-dashed border-slate-300 bg-gradient-to-br from-slate-50 to-slate-100 text-sm text-slate-400 dark:border-slate-700 dark:from-slate-900 dark:to-slate-800/50 dark:text-slate-600">
-              Add a screenshot
-            </div>
+            {/* Preview image if provided, else a tasteful branded panel. */}
+            {project.image ? (
+              <img
+                src={project.image}
+                alt={`${project.name} preview`}
+                class="aspect-video w-full rounded-xl object-cover ring-1 ring-slate-200 dark:ring-slate-800"
+              />
+            ) : (
+              <div class="flex aspect-video items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/10 via-violet-500/10 to-transparent ring-1 ring-inset ring-slate-200 dark:ring-slate-800">
+                <span class="select-none bg-gradient-to-r from-indigo-600 to-violet-500 bg-clip-text text-7xl font-extrabold text-transparent dark:from-indigo-400 dark:to-violet-400">
+                  {project.name.charAt(0)}
+                </span>
+              </div>
+            )}
           </article>
         ))
       }

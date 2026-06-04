@@ -35,6 +35,9 @@ Almost everything lives in **one file**: [`src/site.config.ts`](src/site.config.
 Edit your name, role, bio, skills, social links, and projects there — the whole
 page updates automatically. Other things you might tweak:
 
+- **Photo:** your hero headshot lives at `public/diego-arapovic.jpg`, referenced by
+  `avatar` in `site.config.ts`. Replace the file (or change `avatar`) to swap it;
+  set `avatar: ''` to remove it.
 - **Email:** stored base64-encoded in `socials.emailEncoded` (so it isn't scrapable) and turned into a `mailto:` link in the browser. To change it, run `btoa('you@example.com')` in a browser console and paste the result.
 - **Favicon:** [`public/favicon.svg`](public/favicon.svg) (currently a "D" monogram).
 - **Accent color:** it's Tailwind's `indigo`. Find-and-replace `indigo` →

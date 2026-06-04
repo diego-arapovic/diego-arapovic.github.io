@@ -28,6 +28,8 @@ export interface Project {
 export interface SiteConfig {
   /** Your full name. */
   name: string;
+  /** Optional headshot shown in the hero (path in /public, e.g. '/me.jpg'). Set '' to hide. */
+  avatar?: string;
   /** Short professional title, e.g. "Software Engineer". */
   role: string;
   /** A punchy one-liner shown big in the hero. */
@@ -61,6 +63,7 @@ export interface SiteConfig {
 export const site: SiteConfig = {
   // ── Identity ──────────────────────────────────────────────────────────
   name: 'Diego Arapović',
+  avatar: '/diego-arapovic.jpg',
   role: 'MSc Computer Science @ ETH Zürich',
 
   tagline: 'I build machine-learning systems — and dig into the math that makes them work.',

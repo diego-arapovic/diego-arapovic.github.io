@@ -15,50 +15,70 @@ const firstName = site.name.split(' ')[0];
   </div>
 
   <div
-    class="mx-auto flex min-h-[88svh] max-w-5xl flex-col justify-center px-6 pb-16 pt-24"
+    class="mx-auto grid min-h-[88svh] max-w-5xl grid-cols-1 items-center gap-10 px-6 pb-16 pt-24 md:grid-cols-[1.6fr_1fr] md:gap-12"
   >
-    <p
-      class="mb-4 text-sm font-semibold uppercase tracking-widest text-indigo-600 dark:text-indigo-400"
-    >
-      {site.role}
-    </p>
-
-    <h1
-      class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-6xl dark:text-white"
-    >
-      Hi, I'm {firstName}.
-      <span
-        class="mt-2 block bg-gradient-to-r from-indigo-600 to-violet-500 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400"
+    <!-- Intro -->
+    <div class="order-2 md:order-1">
+      <p
+        class="mb-4 text-sm font-semibold uppercase tracking-widest text-indigo-600 dark:text-indigo-400"
       >
-        {site.tagline}
-      </span>
-    </h1>
+        {site.role}
+      </p>
 
-    <p
-      class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-400"
-    >
-      {site.bio[0]}
-    </p>
+      <h1
+        class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-6xl dark:text-white"
+      >
+        Hi, I'm {firstName}.
+        <span
+          class="mt-2 block bg-gradient-to-r from-indigo-600 to-violet-500 bg-clip-text text-transparent dark:from-indigo-400 dark:to-violet-400"
+        >
+          {site.tagline}
+        </span>
+      </h1>
 
-    <div class="mt-8 flex flex-wrap items-center gap-4">
-      <a
-        href="#projects"
-        class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+      <p
+        class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-400"
       >
-        See my work
-        <Icon name="arrow-right" class="h-4 w-4" />
-      </a>
-      <a
-        href="#contact"
-        class="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-200 dark:hover:border-slate-600 dark:hover:bg-slate-900"
-      >
-        Get in touch
-      </a>
+        {site.bio[0]}
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <a
+          href="#projects"
+          class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          See my work
+          <Icon name="arrow-right" class="h-4 w-4" />
+        </a>
+        <a
+          href="#contact"
+          class="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-200 dark:hover:border-slate-600 dark:hover:bg-slate-900"
+        >
+          Get in touch
+        </a>
+      </div>
+
+      <div class="mt-10">
+        <SocialLinks />
+      </div>
     </div>
 
-    <div class="mt-10">
-      <SocialLinks />
-    </div>
+    <!-- Headshot -->
+    {
+      site.avatar && (
+        <div class="order-1 flex justify-center md:order-2 md:justify-end">
+          <div class="rounded-full bg-gradient-to-tr from-indigo-500 via-violet-500 to-indigo-400 p-1.5 shadow-2xl shadow-indigo-500/20">
+            <img
+              src={site.avatar}
+              alt={site.name}
+              width="288"
+              height="288"
+              class="h-44 w-44 rounded-full object-cover object-center ring-4 ring-white sm:h-56 sm:w-56 md:h-60 md:w-60 lg:h-72 lg:w-72 dark:ring-slate-950"
+            />
+          </div>
+        </div>
+      )
+    }
   </div>
 
   <!-- scroll cue -->

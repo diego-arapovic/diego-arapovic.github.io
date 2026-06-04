@@ -16,9 +16,12 @@ export interface Project {
   link?: string;
   /** Source code URL, e.g. a GitHub repo (optional). */
   source?: string;
-  /** Featured projects render as a large hero card; others as a grid. */
-  featured?: boolean;
-  /** Optional preview image for featured cards (path in /public, e.g. '/thesis.png'). */
+  /**
+   * Optional looping video for the tile (path in /public, e.g. '/projects/demo.mp4').
+   * Autoplays muted, on a loop. Takes priority over `image`.
+   */
+  video?: string;
+  /** Optional still image for the tile — also used as the poster for `video` (path in /public). */
   image?: string;
 }
 
@@ -98,7 +101,6 @@ export const site: SiteConfig = {
       description:
         "My Master's thesis at UZH's Robotics and Perception Group (RPG), exploring long-sequence models for autonomous drone racing.",
       tech: ['Sequence Modeling', 'Deep Learning', 'Robotics', 'Python'],
-      featured: true,
     },
     {
       name: 'Safe Reinforcement Learning for Autonomous Driving',

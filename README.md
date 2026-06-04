@@ -39,9 +39,11 @@ page updates automatically. Other things you might tweak:
 - **Favicon:** [`public/favicon.svg`](public/favicon.svg) (currently a "D" monogram).
 - **Accent color:** it's Tailwind's `indigo`. Find-and-replace `indigo` →
   `emerald` / `rose` / `violet` etc. across `src/` to re-theme.
-- **Project screenshot:** drop an image in `public/` and swap the
-  "Add a screenshot" placeholder in [`src/components/Projects.astro`](src/components/Projects.astro)
-  for an `<img>`.
+- **Project media:** each project tile can show a **looping video** or an image.
+  Drop the file in `public/` (e.g. `public/projects/thesis.mp4`) and set
+  `video: '/projects/thesis.mp4'` (or `image: '/projects/thesis.png'`) on that
+  project in `site.config.ts`. The video autoplays muted on a loop, and an
+  `image` doubles as its poster. With neither, the tile shows a gradient panel.
 
 ## Deploy
 

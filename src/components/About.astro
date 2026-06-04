@@ -1,0 +1,47 @@
+---
+import { site } from '../site.config';
+---
+
+<section id="about" class="border-t border-slate-200/60 dark:border-slate-800/60">
+  <div class="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+    <div class="grid gap-12 md:grid-cols-3">
+      <div class="md:col-span-1">
+        <h2
+          class="text-sm font-semibold uppercase tracking-widest text-indigo-600 dark:text-indigo-400"
+        >
+          About
+        </h2>
+        <p
+          class="mt-2 text-2xl font-bold tracking-tight text-slate-900 dark:text-white"
+        >
+          A bit about me
+        </p>
+      </div>
+
+      <div class="md:col-span-2">
+        <div
+          class="space-y-4 text-lg leading-relaxed text-slate-600 dark:text-slate-400"
+        >
+          {site.bio.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+
+        {
+          site.skills.length > 0 && (
+            <div class="mt-8">
+              <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-500">
+                Tools I work with
+              </h3>
+              <ul class="mt-3 flex flex-wrap gap-2">
+                {site.skills.map((skill) => (
+                  <li class="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-sm font-medium text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300">
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>

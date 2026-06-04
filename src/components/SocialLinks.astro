@@ -1,0 +1,45 @@
+---
+import { site } from '../site.config';
+import Icon, { type IconName } from './Icon.astro';
+
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+
+type Link = {
+  href: string;
+  label: string;
+  icon: IconName;
+  external: boolean;
+  /** base64 email; href is assembled client-side (see Layout.astro). */
+  dataEmail?: string;
+};
+
+const { github, linkedin, twitter, emailEncoded } = site.socials;
+const links: Link[] = [];
+if (github) links.push({ href: github, label: 'GitHub', icon: 'github', external: true });
+if (linkedin) links.push({ href: linkedin, label: 'LinkedIn', icon: 'linkedin', external: true });
+if (twitter) links.push({ href: twitter, label: 'X (Twitter)', icon: 'x', external: true });
+// Email: no plain address in the HTML — the mailto: is built in the browser.
+if (emailEncoded) links.push({ href: '#', label: 'Email', icon: 'mail', external: false, dataEmail: emailEncoded });
+---
+
+<ul class:list={['flex items-center gap-2', className]}>
+  {
+    links.map((l) => (
+      <li>
+        <a
+          href={l.href}
+          data-email={l.dataEmail}
+          aria-label={l.label}
+          title={l.label}
+          {...l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+          class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:-translate-y-0.5 hover:border-indigo-300 hover:text-indigo-600 dark:border-slate-800 dark:text-slate-400 dark:hover:border-indigo-700 dark:hover:text-indigo-400"
+        >
+          <Icon name={l.icon} class="h-5 w-5" />
+        </a>
+      </li>
+    ))
+  }
+</ul>

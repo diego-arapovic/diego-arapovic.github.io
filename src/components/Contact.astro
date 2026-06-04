@@ -1,0 +1,45 @@
+---
+import { site } from '../site.config';
+import Icon from './Icon.astro';
+import SocialLinks from './SocialLinks.astro';
+
+const emailEncoded = site.socials.emailEncoded;
+---
+
+<section id="contact" class="border-t border-slate-200/60 dark:border-slate-800/60">
+  <div class="mx-auto max-w-5xl px-6 py-20 text-center sm:py-28">
+    <h2
+      class="text-sm font-semibold uppercase tracking-widest text-indigo-600 dark:text-indigo-400"
+    >
+      Contact
+    </h2>
+    <p
+      class="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white"
+    >
+      Let's build something
+    </p>
+    <p
+      class="mx-auto mt-4 max-w-xl text-lg text-slate-600 dark:text-slate-400"
+    >
+      Have an opportunity, a question, or just want to say hi? My inbox is
+      always open.
+    </p>
+
+    {
+      emailEncoded && (
+        <a
+          href="#"
+          data-email={emailEncoded}
+          class="mt-8 inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          <Icon name="mail" class="h-5 w-5" />
+          Email me
+        </a>
+      )
+    }
+
+    <div class="mt-10 flex justify-center">
+      <SocialLinks />
+    </div>
+  </div>
+</section>

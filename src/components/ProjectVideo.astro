@@ -1,0 +1,80 @@
+---
+interface Props {
+  src: string;
+  poster?: string;
+  name: string;
+}
+
+const { src, poster, name } = Astro.props;
+---
+
+<div data-project-video class="relative">
+  <video
+    data-src={src}
+    poster={poster}
+    loop
+    muted
+    playsinline
+    preload="none"
+    width="960"
+    height="540"
+    aria-label={`${name} demo`}
+    class="aspect-video w-full rounded-xl bg-slate-950 object-contain ring-1 ring-slate-200 dark:ring-slate-800"
+  />
+  <button
+    type="button"
+    hidden
+    aria-label={`Play video: ${name}`}
+    data-name={name}
+    class="absolute bottom-3 right-3 z-20 rounded-md bg-slate-950/80 px-3 py-1.5 text-xs font-medium text-white hover:bg-slate-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
+  >
+    Play video
+  </button>
+</div>
+
+<script>
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  document.querySelectorAll<HTMLElement>('[data-project-video]').forEach((container) => {
+    const video = container.querySelector('video')!;
+    const button = container.querySelector('button')!;
+    let visible = false;
+    let userPaused = reducedMotion.matches;
+
+    const updateButton = () => {
+      const label = video.paused ? 'Play video' : 'Pause video';
+      button.textContent = label;
+      button.setAttribute('aria-label', `${label}: ${button.dataset.name}`);
+    };
+
+    const syncPlayback = () => {
+      if (!visible || userPaused || document.hidden) {
+        video.pause();
+        return;
+      }
+      // Keep the source unset until playback is needed, avoiding offscreen downloads.
+      if (!video.getAttribute('src')) video.src = video.dataset.src!;
+      video.muted = true;
+      void video.play().catch(updateButton);
+    };
+
+    button.hidden = false;
+    button.addEventListener('click', () => {
+      userPaused = !video.paused;
+      syncPlayback();
+    });
+    video.addEventListener('play', updateButton);
+    video.addEventListener('pause', updateButton);
+    document.addEventListener('visibilitychange', syncPlayback);
+    reducedMotion.addEventListener('change', () => {
+      userPaused = reducedMotion.matches;
+      syncPlayback();
+    });
+
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting && entry.intersectionRatio >= 0.15;
+      syncPlayback();
+    }, { threshold: [0, 0.15] });
+    observer.observe(video);
+  });
+</script>

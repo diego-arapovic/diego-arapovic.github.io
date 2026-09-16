@@ -12,17 +12,23 @@ export interface Project {
   description: string;
   /** Tech/tools used — rendered as little tags. */
   tech: string[];
-  /** Live demo / website URL (optional). */
+  /** Project page, report, or demo URL (optional). Makes the tile clickable. */
   link?: string;
+  /** Text for the project link, e.g. 'Read thesis'. */
+  linkLabel?: string;
   /** Source code URL, e.g. a GitHub repo (optional). */
   source?: string;
   /**
    * Optional looping video for the tile (path in /public, e.g. '/projects/demo.mp4').
-   * Autoplays muted, on a loop. Takes priority over `image`.
+   * Plays muted on a loop when visible. Takes priority over `image`.
    */
   video?: string;
   /** Optional still image for the tile — also used as the poster for `video` (path in /public). */
   image?: string;
+  /** Description of the image for screen readers. */
+  imageAlt?: string;
+  /** Use 'contain' for diagrams that should be displayed without cropping. */
+  imageFit?: 'cover' | 'contain';
 }
 
 export interface SiteConfig {
@@ -70,7 +76,7 @@ export const site: SiteConfig = {
 
   // ── About (one string per paragraph) ──────────────────────────────────
   bio: [
-    "Right now I'm working on object manipulation with robotics arms at the ETH Robotics Club. I did my Master's thesis on long-sequence modeling for autonomous drone racing at UZH's Robotics and Perception Group. Earlier work spans reproducible ML pipelines, shielded reinforcement-learning agents for autonomous driving, and software shipped to thousands of users. Previously I worked in product-engineering at Scandit and a software-engineering  at Ergon Informatik. Based in Zürich.",
+    "Right now I'm working on object manipulation with robotics arms at the ETH Robotics Club. I did my Master's thesis on long-sequence modeling for autonomous drone racing at UZH's Robotics and Perception Group. Earlier work spans reproducible ML pipelines, shielded reinforcement-learning agents for autonomous driving. Previously I worked in product-engineering at Scandit and a software-engineering at Ergon Informatik. Based in Zürich.",
   ],
 
   // ── Skills (shown as tags) ────────────────────────────────────────────
@@ -99,34 +105,65 @@ export const site: SiteConfig = {
   // ── Projects ──────────────────────────────────────────────────────────
   projects: [
     {
+      name: 'Robotic Object Manipulation',
+      description:
+        'Ongoing work on object manipulation with robotic arms at the ETH Robotics Club.',
+      tech: ['Robotics', 'Object Manipulation'],
+      link: 'https://www.linkedin.com/company/eth-robotics-club/home/',
+      linkLabel: 'ETH Robotics Club',
+      video: '/projects/robot-arms.mp4',
+      image: '/projects/robot-arms.webp',
+    },
+    {
       name: 'Long-Sequence Modeling for Drone Racing',
       description:
         "My Master's thesis at UZH's Robotics and Perception Group (RPG), exploring long-sequence models for autonomous drone racing.",
       tech: ['Sequence Modeling', 'Deep Learning', 'Robotics', 'Python'],
+      link: 'https://drive.google.com/file/d/1x4H_ZR0AcaHewGWfRVmborCFS7BRGFel/view?usp=sharing',
+      linkLabel: 'Read thesis',
+      image: '/projects/drone-racing.webp',
+      imageAlt: 'Illuminated drone trajectories around an indoor racing course.',
+      imageFit: 'contain',
     },
     {
       name: 'Safe Reinforcement Learning for Autonomous Driving',
       description:
         "Semester thesis at KU Leuven's DTAI lab: researched and tested RL agents for autonomous driving, demonstrating the advantages of shielded PPO, and parallelized training and evaluation across GPUs to cut experiment time.",
       tech: ['Reinforcement Learning', 'Shielded PPO', 'Autonomous Driving'],
+      link: 'https://drive.google.com/file/d/1Tgz242ySZcX6XUMiHYIeBVVbwwP9rAdI/view?usp=sharing',
+      linkLabel: 'Read thesis',
+      video: '/projects/driving.mp4',
+      image: '/projects/driving.webp',
     },
     {
       name: 'Vision Transformer Explainability',
       description:
         'An interactive blog and demo introducing a novel adaptation of activation maximization for the attention scores of ViT attention heads — peer-reviewed and presented at an academic conference.',
       tech: ['Vision Transformers', 'Explainability', 'Deep Learning'],
+      link: 'https://explainability-vit.ivia.ch/',
+      linkLabel: 'Explore the demo',
+      image: '/projects/vit-explainability.webp',
+      imageAlt: 'Vision Transformer encoder diagram showing attention heads across twelve transformer blocks.',
+      imageFit: 'contain',
     },
     {
       name: 'RACER — Road Analysis through Clustering & Enhanced Reconstruction',
       description:
         'An ensemble-learning workflow with pre-training and fine-tuning over large, cleaned image datasets, plus end-to-end scripts for reproducible data prep, training, and evaluation.',
       tech: ['Ensemble Learning', 'Computer Vision', 'Python'],
+      link: 'https://drive.google.com/file/d/1aSRhWOmBKhxDZlanElIwAMMR6KlBVak4/view?usp=sharing',
+      linkLabel: 'Read report',
+      image: '/projects/satellite-images.webp',
+      imageAlt: 'Satellite image tiles showing roads, buildings, and vegetation.',
+      imageFit: 'contain',
     },
     {
       name: 'Datathon — RAG from Scratch',
       description:
         'Built a retrieval-augmented generation system from scratch during a two-day data-science hackathon, placing 4th at the ETH Analytics Club Datathon.',
       tech: ['RAG', 'LLMs', 'Python'],
+      image: '/projects/datathon.webp',
+      imageAlt: 'Team members working together at the Analytics Club Datathon 2025.',
     },
   ],
 

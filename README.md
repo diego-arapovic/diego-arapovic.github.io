@@ -42,11 +42,36 @@ page updates automatically. Other things you might tweak:
 - **Favicon:** [`public/favicon.svg`](public/favicon.svg) (currently a "D" monogram).
 - **Accent color:** it's Tailwind's `indigo`. Find-and-replace `indigo` →
   `emerald` / `rose` / `violet` etc. across `src/` to re-theme.
-- **Project media:** each project tile can show a **looping video** or an image.
-  Drop the file in `public/` (e.g. `public/projects/thesis.mp4`) and set
-  `video: '/projects/thesis.mp4'` (or `image: '/projects/thesis.png'`) on that
-  project in `site.config.ts`. The video autoplays muted on a loop, and an
-  `image` doubles as its poster. With neither, the tile shows a gradient panel.
+- **Project links:** set `link` and `linkLabel` (e.g. `Read thesis`) on a project
+  in `site.config.ts`. The whole tile opens the link; video controls remain
+  independently clickable. Without a link, the tile is informational.
+- **Project media:** optimized WebP images and silent H.264 MP4 videos live in
+  `public/projects/`. Set `video` and/or `image` to their public paths in
+  `site.config.ts`; `image` also serves as a video's still preview. Use
+  `imageAlt` for descriptive alt text and `imageFit: 'contain'` for diagrams
+  that must not be cropped. Videos load and loop only while visible, pause
+  offscreen, and have a play/pause button. Reduced-motion users see a still
+  preview until they choose to play. Images load lazily.
+  Original files in `media/` stay local and are ignored by Git; commit the
+  optimized assets in `public/projects/` along with the configuration.
+
+### Compress a project video
+
+Install FFmpeg on macOS with `brew install ffmpeg`. Use MP4 for efficient loops:
+
+```bash
+ffmpeg -i media/input.mov -map 0:v:0 -an -map_metadata -1 \
+  -vf "fps=24,scale=960:540:force_original_aspect_ratio=decrease:force_divisible_by=2,setsar=1" \
+  -c:v libx264 -preset slow -crf 27 -pix_fmt yuv420p \
+  -movflags +faststart public/projects/demo.mp4
+
+ffmpeg -ss 1 -i public/projects/demo.mp4 -frames:v 1 \
+  -q:v 3 public/projects/demo.jpg
+```
+
+This preserves the full clip and its aspect ratio while removing audio and
+limiting resolution and frame rate. Set the resulting still image as the video's
+`image` in `site.config.ts`.
 
 ## Deploy
 

@@ -1,6 +1,7 @@
 ---
 import { site } from '../site.config';
 import Icon from './Icon.astro';
+import ProjectVideo from './ProjectVideo.astro';
 
 const projects = site.projects;
 ---
@@ -29,7 +30,10 @@ const projects = site.projects;
     <div class="mt-12 space-y-8">
       {
         projects.map((project, i) => (
-          <article class="grid gap-8 rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-indigo-300 hover:shadow-lg sm:p-8 md:grid-cols-2 md:items-center dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-indigo-700">
+          <article class:list={[
+            'relative grid gap-8 rounded-2xl border border-slate-200 bg-white p-6 transition sm:p-8 md:grid-cols-2 md:items-center dark:border-slate-800 dark:bg-slate-900/50',
+            project.link && 'hover:border-indigo-300 hover:shadow-lg dark:hover:border-indigo-700',
+          ]}>
             {/* Text — sits on the opposite side from the media on alternating rows. */}
             <div class:list={[i % 2 === 1 && 'md:order-2']}>
               <h3 class="text-2xl font-bold text-slate-900 dark:text-white">
@@ -52,9 +56,10 @@ const projects = site.projects;
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-500"
+                      aria-label={`${project.linkLabel || 'View project'}: ${project.name} (opens in a new tab)`}
+                      class="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition after:absolute after:inset-0 after:z-10 after:rounded-2xl hover:bg-indigo-500 focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-4 focus-visible:after:outline-indigo-500"
                     >
-                      Live demo
+                      {project.linkLabel || 'View project'}
                       <Icon name="external" class="h-4 w-4" />
                     </a>
                   )}
@@ -63,7 +68,7 @@ const projects = site.projects;
                       href={project.source}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
+                      class="relative z-20 inline-flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
                     >
                       <Icon name="github" class="h-4 w-4" />
                       Source
@@ -76,22 +81,23 @@ const projects = site.projects;
             {/* Media: looping video → still image → branded gradient panel. */}
             <div class:list={[i % 2 === 1 && 'md:order-1']}>
               {project.video ? (
-                <video
+                <ProjectVideo
                   src={project.video}
                   poster={project.image}
-                  autoplay
-                  loop
-                  muted
-                  playsinline
-                  preload="metadata"
-                  aria-label={`${project.name} demo`}
-                  class="aspect-video w-full rounded-xl object-cover ring-1 ring-slate-200 dark:ring-slate-800"
+                  name={project.name}
                 />
               ) : project.image ? (
                 <img
                   src={project.image}
-                  alt={`${project.name} preview`}
-                  class="aspect-video w-full rounded-xl object-cover ring-1 ring-slate-200 dark:ring-slate-800"
+                  alt={project.imageAlt || `${project.name} preview`}
+                  loading="lazy"
+                  decoding="async"
+                  width="960"
+                  height="540"
+                  class:list={[
+                    'aspect-video w-full rounded-xl ring-1 ring-slate-200 dark:ring-slate-800',
+                    project.imageFit === 'contain' ? 'bg-slate-100 object-contain dark:bg-slate-950' : 'object-cover',
+                  ]}
                 />
               ) : (
                 <div class="flex aspect-video items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/10 via-violet-500/10 to-transparent ring-1 ring-inset ring-slate-200 dark:ring-slate-800">

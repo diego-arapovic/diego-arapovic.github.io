@@ -1,6 +1,9 @@
 # build output
 dist/
 
+# Original project media; optimized website assets live in public/projects/.
+/media/
+
 # generated types
 .astro/
 

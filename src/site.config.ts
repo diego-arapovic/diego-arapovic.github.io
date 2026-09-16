@@ -62,16 +62,15 @@ export interface SiteConfig {
 
 export const site: SiteConfig = {
   // ── Identity ──────────────────────────────────────────────────────────
-  name: 'Diego Arapović',
+  name: 'Diego Arapovic',
   avatar: '/diego-arapovic.jpg',
   role: 'MSc Computer Science @ ETH Zürich',
 
-  tagline: 'I build machine-learning systems — and dig into the math that makes them work.',
+  tagline: 'I work on machine learning for intelligent systems that perceive, reason, and act in the physical world.',
 
   // ── About (one string per paragraph) ──────────────────────────────────
   bio: [
-    "I'm a Computer Science Master's student at ETH Zürich, focused on machine learning. My work runs across software engineering, model training, simulations, and computer vision — with a particular pull toward reinforcement learning, deep learning, and the mathematical foundations that make them tick.",
-    "Right now I'm writing my Master's thesis on long-sequence modeling for autonomous drone racing at UZH's Robotics and Perception Group. Earlier work spans reproducible ML pipelines, shielded reinforcement-learning agents for autonomous driving, and software shipped to thousands of users — across a product-engineering role at Scandit and a software-engineering internship at Ergon Informatik. Based in Zürich.",
+    "Right now I'm working on object manipulation with robotics arms at the ETH Robotics Club. I did my Master's thesis on long-sequence modeling for autonomous drone racing at UZH's Robotics and Perception Group. Earlier work spans reproducible ML pipelines, shielded reinforcement-learning agents for autonomous driving, and software shipped to thousands of users. Previously I worked in product-engineering at Scandit and a software-engineering  at Ergon Informatik. Based in Zürich.",
   ],
 
   // ── Skills (shown as tags) ────────────────────────────────────────────
@@ -132,7 +131,7 @@ export const site: SiteConfig = {
   ],
 
   // ── SEO ───────────────────────────────────────────────────────────────
-  siteTitle: 'Diego Arapović — Machine Learning & Computer Science',
+  siteTitle: 'Diego Arapovic — Machine Learning & Computer Science',
   siteDescription:
-    "Personal site of Diego Arapović — a Computer Science Master's student at ETH Zürich working on machine learning, reinforcement learning, and computer vision.",
+    "Personal site of Diego Arapovic — a Computer Science Master's student at ETH Zürich working on machine learning, reinforcement learning, and computer vision.",
 };

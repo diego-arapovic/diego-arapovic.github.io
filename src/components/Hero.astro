@@ -1,5 +1,6 @@
 ---
 import { site } from '../site.config';
+import BoldText from './BoldText.astro';
 import Icon from './Icon.astro';
 import SocialLinks from './SocialLinks.astro';
 
@@ -39,7 +40,7 @@ const firstName = site.name.split(' ')[0];
       <p
         class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-400"
       >
-        {site.bio[0]}
+        <BoldText text={site.intro} />
       </p>
 
       <div class="mt-8 flex flex-wrap items-center gap-4">

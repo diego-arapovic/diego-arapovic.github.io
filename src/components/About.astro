@@ -1,5 +1,6 @@
 ---
 import { site } from '../site.config';
+import BoldText from './BoldText.astro';
 ---
 
 <section id="about" class="border-t border-slate-200/60 dark:border-slate-800/60">
@@ -22,7 +23,7 @@ import { site } from '../site.config';
         <div
           class="space-y-4 text-lg leading-relaxed text-slate-600 dark:text-slate-400"
         >
-          {site.bio.map((paragraph) => <p>{paragraph}</p>)}
+          {site.bio.map((paragraph) => <p><BoldText text={paragraph} /></p>)}
         </div>
 
         {

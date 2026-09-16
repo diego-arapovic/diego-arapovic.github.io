@@ -40,7 +40,9 @@ export interface SiteConfig {
   role: string;
   /** A punchy one-liner shown big in the hero. */
   tagline: string;
-  /** One or more paragraphs for the About section. */
+  /** Intro below the tagline. Supports **bold** emphasis. */
+  intro: string;
+  /** One or more paragraphs for the About section. Supports **bold** emphasis. */
   bio: string[];
   /** Skills / tools shown as tags in the About section. */
   skills: string[];
@@ -74,9 +76,13 @@ export const site: SiteConfig = {
 
   tagline: 'I work on machine learning for intelligent systems that perceive, reason, and act in the physical world.',
 
+  intro:
+    "I’m particularly interested in **robot learning, reinforcement learning, computer vision, and world models**, with a focus on turning learning algorithms into systems that work on real robots. Right now I'm working on object manipulation with robotics arms at the ETH Robotics Club. I did my Master's thesis on long-sequence modeling for autonomous drone racing at UZH's Robotics and Perception Group.",
+
   // ── About (one string per paragraph) ──────────────────────────────────
   bio: [
-    "Right now I'm working on object manipulation with robotics arms at the ETH Robotics Club. I did my Master's thesis on long-sequence modeling for autonomous drone racing at UZH's Robotics and Perception Group. Earlier work spans reproducible ML pipelines, shielded reinforcement-learning agents for autonomous driving. Previously I worked in product-engineering at Scandit and a software-engineering at Ergon Informatik. Based in Zürich.",
+    'I’m a Computer Science MSc student at ETH Zurich with experience across **computer vision, deep learning, reinforcement learning, robotics, and production software engineering**. My recent work includes real-time vision-based control for drone racing, semantic segmentation, ViT explainability, safe reinforcement learning for autonomous driving, and robot learning with world models for manipulation.',
+    'Beyond research, I’ve worked at **Scandit** on real-world visual data collection, evaluation pipelines, and failure analysis, and at **Ergon** on production software used by thousands of users. Across these projects, I’ve enjoyed combining experimentation with strong engineering and taking ideas from initial prototypes to systems that work in practice.',
   ],
 
   // ── Skills (shown as tags) ────────────────────────────────────────────
